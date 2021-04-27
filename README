@@ -1,0 +1,1 @@
+small kernetl implementing basic functionality (IRQ , paging , display , ...) , using as bootloader GRUB . 
