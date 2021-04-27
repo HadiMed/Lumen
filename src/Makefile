@@ -12,7 +12,7 @@ clean:
 link:
 	ld -melf_i386 $(LDFLAGS) -o kernel $(SOURCES)
 
-.s.o:
+%.o : %.asm
 	
 	nasm $(ASFLAGS) boot.asm -o boot.o
 	nasm $(ASFLAGS) utils.asm -o utils.o
