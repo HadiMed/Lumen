@@ -1,5 +1,5 @@
 #include "VGA.h"
-
+// See declarations and comments on Header file
 
 
 // VGA controller memory mapped into ram at this address
@@ -52,7 +52,13 @@ void VGA_put(char caracter_code) {
 		
 			else { 
 				Crs.cursor_x-- ; 
-			} break ; 
+			}
+			 position = VGA_mem + (Crs.cursor_y*80+Crs.cursor_x) ;
+
+                       // Replacing previous caracter with a space 
+                       *position = color << 8 | 0x20 ;
+
+		       	break ; 
 		
 		case 0x09 /*tab*/:
 
@@ -68,6 +74,7 @@ void VGA_put(char caracter_code) {
 		case '\n' /*NewLine*/ : 
 		  
 		       Crs.cursor_y+=1 ;
+		       Crs.cursor_x=0 ; 
 		       break ;
 
 		default /*Any other ASCII caracter */:
@@ -97,4 +104,23 @@ void VGA_write_string(char *c ) {
 
 	while(c[i]) VGA_put(c[i++]) ; 
 	
+}
+
+
+void reset_screen() { 
+
+	u8int color = COLOR_BLACK << 4 /*background*/| COLOR_WHITE /* foreground */ ;
+        u8int caracter_code = 0x20 /* space */ ;
+        u16int space_data = color << 8 | caracter_code ;
+
+	// putting spaces in  lines and setting up the hardware cursor in the begining
+	for(int i=0 ; i<80*25 ;i++){
+
+		VGA_mem[i] = space_data ; 	
+
+		 }
+	Crs.cursor_x = 0 ; 
+	Crs.cursor_y = 0 ;
+	
+	move_cursor(0) ;  
 }
