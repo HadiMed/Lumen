@@ -1,8 +1,9 @@
-SOURCES=boot.o main.o utils.o 
+SOURCES=boot.o kernel_main.o VGA.o utils.o 
 
 CFLAGS=-m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector
 LDFLAGS=-T link.ld
 ASFLAGS=-f elf32
+
 
 all: $(SOURCES) link
 
