@@ -1,2 +1,3 @@
 small kernel implementing basic functionality (IRQ , paging , display , ...) (in progress ..), using GRUB as bootloader  . 
 for now its using only text mode (NO VESA ) 
+[+] Mini Vga driver (text mode) done .  
