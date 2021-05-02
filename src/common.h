@@ -27,4 +27,7 @@ typedef          char  s8int;
 void move_cursor(u16int current_position_cursor);
 
 
+// Memory functions 
+void memset(u32int * ptr, int value , int size) ; 
+
 #endif

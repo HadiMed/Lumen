@@ -1,4 +1,4 @@
-SOURCES=boot.o kernel_main.o VGA.o utils.o IDT_GDT.o
+SOURCES=boot.o kernel_main.o VGA.o utils.o IDT_GDT.o common.o
 
 CFLAGS=-m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector
 LDFLAGS=-T link.ld
