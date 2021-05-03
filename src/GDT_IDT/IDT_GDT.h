@@ -33,11 +33,11 @@ struct idt_entry_struct
    u8int  flags;               
    u16int base_hi;             // The upper 16 bits of the address to jump to.
 } __attribute__((packed));
-typedef struct idt_entry idt_entry;
+typedef struct idt_entry_struct idt_entry;
 
 // A struct describing a pointer to an array of interrupt handlers.
 // This is in a format suitable for giving to 'lidt'.
-struct idt_ptr
+struct idt_ptr_struct
 {
    u16int limit;
    u32int base;                // The address of the first element in our idt_entry_t array.
@@ -77,5 +77,5 @@ extern void isr27();
 extern void isr28();
 extern void isr29();
 extern void isr30();
-
+extern void isr31();
 

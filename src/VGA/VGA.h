@@ -1,7 +1,7 @@
 #ifndef MONITOR_H
 #define MONITOR_H
 
-#include "common.h"
+#include "../common.h"
 
 // VGA color codes 
 #define COLOR_BLACK 0 

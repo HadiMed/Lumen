@@ -1,5 +1,5 @@
 #include "common.h"
-#include "VGA.h"
+#include "VGA/VGA.h"
 
 
 int kernel_main(struct multiboot *mboot) { 
