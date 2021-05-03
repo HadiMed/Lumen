@@ -24,7 +24,6 @@ typedef          short s16int;
 typedef unsigned char  u8int;
 typedef          char  s8int;
 
-void move_cursor(u16int current_position_cursor);
 
 
 // Memory functions 

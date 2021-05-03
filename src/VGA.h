@@ -33,7 +33,7 @@ typedef struct cursor {
 }Cursor ; 
 
 
-// this function is coded in utils.s
+// this function is coded in VGA.asm
 extern void move_cursor(u16int current_position_cursor);
 
 // automatic scroll when current frame is full by one line
