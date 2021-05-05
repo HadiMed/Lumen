@@ -1,15 +1,16 @@
 #include "common.h"
 #include "VGA/VGA.h"
+#include "GDT_IDT/IDT_GDT.h"
 
+int kernel_main(struct multiboot *mboot) {
 
-int kernel_main(struct multiboot *mboot) { 
+// Initialization of IDT and GDT 
+init_gdt_and_idt() ; 
+	
 
-VGA_write_string("Hello from under world !") ; 
+VGA_write_string("Hello from under world ! \n") ;
 
-reset_screen() ;
+asm volatile ("int $0x3") ;
 
-
-VGA_write_string("Hello again ,still in under world :) ") ;
-VGA_put(0x08) ; 
-
+VGA_write_string("Back after interrupt") ; 
 } 

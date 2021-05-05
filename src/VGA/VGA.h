@@ -48,7 +48,7 @@ void reset_screen();
 // write a null-terminated ASCII string to the monitor.
 void VGA_write_string(char *c);
 
-// write a Hex number 
-void VGA_write_hex(s32int d);
+// write a int number  
+void VGA_write_int(s32int);
 
 #endif // MONITOR_H

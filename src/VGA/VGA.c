@@ -105,6 +105,36 @@ void VGA_write_string(char *c ) {
 	while(c[i]) VGA_put(c[i++]) ; 
 	
 }
+// Print int to screen 
+void VGA_write_int(s32int number) {
+
+	s32int temp = number/10 ;
+
+	s32int pow = 1 ; 
+
+	s32int number_of_digits = 0 ; 
+
+	if (!number) VGA_put('0') ;
+
+	while (temp){ number_of_digits++; pow*=10 ;temp/=10 ;}  //Calculating number of digits minus one of the number 
+ 
+	
+	while(number_of_digits+1) {
+		// Take 934 for example devide if by 100 will give 9 
+		
+		VGA_put(number/pow+0x30);
+	       	  	
+		 
+		number =number % pow ;
+	       	pow /= 10 ; 	
+
+		number_of_digits-- ; 
+	
+
+	}	
+
+
+}
 
 
 void reset_screen() { 

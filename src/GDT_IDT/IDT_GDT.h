@@ -44,6 +44,9 @@ struct idt_ptr_struct
 } __attribute__((packed));
 typedef struct idt_ptr_struct idt_ptr;
 
+// Initialisation of Global Descript and interreupt descript tables from kernel main with 
+
+void init_gdt_and_idt() ; 
 
 // ISRs will be defined 
 extern void isr0 ();

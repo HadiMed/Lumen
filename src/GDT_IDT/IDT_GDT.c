@@ -25,7 +25,14 @@ gdt_entry gdt_entries[5] ;
 gdt_ptr GDT ;
 
 idt_entry idt_entries[256] ; 
-idt_ptr IDT ; 
+idt_ptr IDT ;
+
+void init_gdt_and_idt() {
+	init_gdt() ; 
+	init_idt() ; 
+
+}
+
 
 // GDT Code 
 static void init_gdt()
