@@ -1,7 +1,9 @@
 # MiniKern 
 
-small kernel implementing basic functionality (IRQ , paging , display , ...) (in progress ..), using GRUB as bootloader  . 
-for now its using only text mode (NO VESA ) 
+kernel implementing basic functionality (IRQ , paging , display , ...) (in progress ..), using GRUB as bootloader , and Compiled with GCC   .
+working in protected mode , since GRUB already sets up protected mode for the Kernel . 
+for now only text mode (NO VESA ) is available . 
+
 [+] Mini Vga driver :
   - printing ASCII chars in 80*25 window ( text mode )
   - API includes printing strings , decimal numbers . 
