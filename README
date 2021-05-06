@@ -1,5 +1,5 @@
 small kernel implementing basic functionality (IRQ , paging , display , ...) (in progress ..), using GRUB as bootloader  . 
 for now its using only text mode (NO VESA ) 
 [+] Mini Vga driver (text mode) done , (printing integers added) .  
-[+] GDT done (Segmentation).
+[+] GDT done (Segmentation must be done , but not used actually , All segments are overlaped from 0x0000000 to 0xFFFFFFFF).
 [+] IDT done , interrupts are correctly handled .
