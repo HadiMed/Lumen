@@ -3,6 +3,14 @@
 
 // Definitions will be used in all the kernel
 //
+// Main message 
+#define Entry_message \
+"           _     _    _____                 _    _____         _   _\n"\
+"     _____|_|___|_|  |  |  |___ ___ ___ ___| |  | __  |___ ___| |_|_|___ ___\n"\
+"    |     | |   | |  |    -| -_|  _|   | -_| |  | __ -| . | . |  _| |   | . |\n"\
+"    |_|_|_|_|_|_|_|  |__|__|___|_| |_|_|___|_|  |_____|___|___|_| |_|_|_|_  |\n"\
+"                                                                        |___|\n"
+
 typedef struct multiboot { 
   int   MBOOT_HEADER_MAGIC ;
   int  MBOOT_HEADER_FLAGS;
