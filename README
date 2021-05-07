@@ -1,4 +1,16 @@
-small kernel implementing basic functionality (IRQ , paging , display , ...) (in progress ..), using GRUB as bootloader  . 
-for now its using only text mode (NO VESA ) 
-[+] Mini Vga driver (text mode) done .  
-[+] GDT , IDT done . 
+# MiniKern 
+
+kernel implementing basic functionality (IRQ , paging , display , ...) (in progress ..), using GRUB as bootloader , and Compiled with GCC   .
+working in protected mode , since GRUB already sets up protected mode for the Kernel . 
+for now only text mode (NO VESA ) is available . 
+
+[+] Mini Vga driver :
+  - printing ASCII chars in 80*25 window ( text mode )
+  - API includes printing strings , decimal numbers . 
+  
+[+] GDT :
+  Segmentation must be done processor expects at least 4 segments , but not used actually , All segments are overlaped from 0x0000000 to 0xFFFFFFFF.
+  Paging will be adopted . 
+[+] IDT :
+  all 32 first interrupts are configured correctly , CPU get notified when some interrupt arrive and handled correctly by saving the CPU state and jumping to the 
+  handler code(check IDT_GDT_ASM.asm).  
