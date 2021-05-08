@@ -1,6 +1,6 @@
 #include "../common.h"
 #include "isr.h"
-#include "../VGA/VGA.h"
+#include "../Vga/vga.h"
 
 // This gets called from our ASM interrupt handler stub.
 void isr_handler(registers reg)
@@ -10,11 +10,12 @@ void isr_handler(registers reg)
    VGA_write_int(reg.int_no) ; 
    switch(reg.int_no) { 
 	case 0 :
-   		VGA_write_string("\nSome motherfucker devided by 0 WHAT THE FUCK ?!\n") ;
-		asm volatile("hlt");
-	       		
-
+   		VGA_write_string("\nSomeone devided by 0 ?!\n , we should kill the process !\n") ;
+		
+	
 	default : 
-		VGA_write_string("\nNo divison by 0 , You are good to go :)\n") ; 
+		VGA_write_string("\nNo divison by 0\n , returning to main") ;
+
    } 
+  asm volatile ("hlt") ;   
 }

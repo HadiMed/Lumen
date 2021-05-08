@@ -1,5 +1,5 @@
 #include "../common.h"
-#include "IDT_GDT.h"
+#include "idt_gdt.h"
 
 // This function will be defined in IDT_GDT.asm , it will load the GDT pointer
 extern void gdt_flush(u32int) ;
@@ -28,6 +28,7 @@ idt_entry idt_entries[256] ;
 idt_ptr IDT ;
 
 void init_gdt_and_idt() {
+
 	init_gdt() ; 
 	init_idt() ; 
 
@@ -74,6 +75,15 @@ static void init_idt() {
 
 	memset((u8int*)idt_entries , 0 , sizeof(idt_entry)*256) ;// Setting 0 on all fields on all structs . 
 
+
+	/*by default IRQs mapping are IRQ 0..7  :int 0x8 ... int 0xF ,and 8..15 : 0x70 .. 0x77
+	 they conflict with the interrupts used by The CPU to signal exceptions
+	normal thing to do is remap them . IRQs remap IRQ0--> 0x20(32) after the isrs  */
+
+	remap_irq() ;
+	
+	/*Setting up the ISRs */
+
 	idt_set_entry( 0, (u32int)isr0 , 0x08, 0x8E);
     	idt_set_entry( 1, (u32int)isr1 , 0x08, 0x8E);
     	idt_set_entry( 2, (u32int)isr2 , 0x08, 0x8E);
@@ -106,6 +116,25 @@ static void init_idt() {
     	idt_set_entry(29, (u32int)isr29, 0x08, 0x8E);
     	idt_set_entry(30, (u32int)isr30, 0x08, 0x8E);
     	idt_set_entry(31, (u32int)isr31, 0x08, 0x8E);
+
+	/*Setting up the IRQs*/
+	idt_set_entry(32, (u32int)irq0, 0x08, 0x8E);
+	idt_set_entry(33, (u32int)irq1, 0x08, 0x8E);
+	idt_set_entry(34, (u32int)irq2, 0x08, 0x8E);
+	idt_set_entry(35, (u32int)irq3, 0x08, 0x8E);
+	idt_set_entry(36, (u32int)irq4, 0x08, 0x8E);
+	idt_set_entry(37, (u32int)irq5, 0x08, 0x8E);
+	idt_set_entry(38, (u32int)irq6, 0x08, 0x8E);
+	idt_set_entry(39, (u32int)irq7, 0x08, 0x8E);
+	idt_set_entry(40, (u32int)irq8, 0x08, 0x8E);
+	idt_set_entry(41, (u32int)irq9, 0x08, 0x8E);
+	idt_set_entry(42, (u32int)irq10, 0x08, 0x8E);
+	idt_set_entry(43, (u32int)irq11, 0x08, 0x8E);
+	idt_set_entry(44, (u32int)irq12, 0x08, 0x8E);
+	idt_set_entry(45, (u32int)irq13, 0x08, 0x8E);
+	idt_set_entry(46, (u32int)irq14, 0x08, 0x8E);
+	idt_set_entry(47, (u32int)irq15, 0x08, 0x8E);
+
 
     	idt_flush((u32int)&IDT); 
 }

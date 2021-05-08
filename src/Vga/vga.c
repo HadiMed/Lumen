@@ -1,4 +1,4 @@
-#include "VGA.h"
+#include "vga.h"
 // See declarations and comments on Header file
 
 

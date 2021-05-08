@@ -8,3 +8,6 @@ typedef struct registers_struct
    u32int int_no, err_code;    
    u32int eip, cs, eflags, useresp, ss; // Pushed by the processor automatically.
 } registers;
+
+// End of interrupt 
+extern void EOI() ; 
