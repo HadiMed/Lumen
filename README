@@ -14,3 +14,5 @@ for now only text mode (NO VESA ) is available .
 [+] IDT :
   all 32 first interrupts are configured correctly , CPU get notified when some interrupt arrive and handled correctly by saving the CPU state and jumping to the 
   handler code(check IDT_GDT_ASM.asm).  
+[+] IRQs:
+  Interrupt requests are remapped to 32--47 to not conflict with CPU exceptions 
