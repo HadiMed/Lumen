@@ -18,7 +18,7 @@ link:$(OBJECTS)
 	@echo  "[+]Compilation Successfull"
 	$(info ************  Linking ************)
 	ld -melf_i386 $(LDFLAGS) -o kernel $^  
-	mv kernel ../image/boot/kernel
+	cp kernel ../image/boot/kernel
 	grub-mkrescue -o ../miniKern.iso ../image/
 	qemu-system-i386 -cdrom ../miniKern.iso
 	@echo -n "Done!"

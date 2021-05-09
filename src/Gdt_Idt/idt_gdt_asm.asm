@@ -67,7 +67,9 @@ ISR_NOERR 29
 ISR_NOERR 30
 ISR_NOERR 31
 
+
 [extern isr_handler] 
+[GLOBAL isr_stub]
 isr_stub: 
 ; Common Code for Handling the interrupt , Saving the processor state before Jumping To the code that will handle the interrupt
 	
@@ -91,7 +93,7 @@ isr_stub:
 	mov es, ax
    	mov fs, ax
    	mov gs, ax
-
+	
 	popa ; Pops edi , esi , ebp , esp , ebx , edx , ecx , eax From the stack 
 	
 	; All ISRs will do a JMP Before entering the isr_stub , So we need to reset 
@@ -99,7 +101,7 @@ isr_stub:
 	; even if we push just a byte the stack pointer will move by (32 bits ) that s where 8 comes from 
 	; 8 bytes   
 	add esp , 8
-	sti ; Enabling interrupts again (Setting Interrupt Flag to 1 ) 
+	;sti ; Enabling interrupts again (Setting Interrupt Flag to 1 ) iret will restore the EFLAGS no this is useless !!
 	
 	iret ; Cool instruction to restore ESP , CS , EIP , EFLAGS , SS before the interrupt trigerred        
 
@@ -107,6 +109,7 @@ isr_stub:
 
 
 gdt_flush:
+	
 	mov eax , [esp+4] ; GDT pointer passed as arg  
 	lgdt [eax] ; Load The GDT pointer Into Special register GDTR
 	
@@ -121,12 +124,13 @@ gdt_flush:
 	
 	; Setting up the CS to 0x08 (Kernel Code Segment at offset 0x08) by doing a far JMP 
 	jmp 0x08:.flsh 
-
+	
 .flsh:
 	ret
 
 idt_flush :
+	
 	mov eax , [esp+4] ; IDT poinnter 
 	lidt [eax] ; Load IDT pointer Into Special register IDTR
 	ret 
-            
+ 	           

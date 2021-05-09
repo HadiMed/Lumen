@@ -1,4 +1,4 @@
-;important functions that must be implemented in assembly (No inline assembly)
+
 [BITS 32]
 
 [GLOBAL move_cursor]

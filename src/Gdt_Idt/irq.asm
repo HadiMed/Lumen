@@ -1,12 +1,12 @@
 [BITS 32]
-; This file contains remaping the interrupt requests and defining default stub for handling them 
+; This file contains remaping the interrupt requests and defining default stub for handxing them 
 
 
 
 %macro send_command_to_PIC 2 ; First param port , Second  param : value 
 	mov dx , %1
-	mov ax , %2 
-	out dx , ax 
+	mov al , %2 
+	out dx ,al 
 %endmacro
 
 
@@ -22,37 +22,36 @@ remap_irq:
 		;Command port : 0xA0 
 		; data port : 0xA1
 
-
-	; Initialisation the 2 chips
 	
+	; Initialisation the 2 chips
 	send_command_to_PIC 0x20 ,0x11 
 	send_command_to_PIC 0xA0 ,0x11 
 
 	; Sending the New offsets
 
 	send_command_to_PIC 0x21 ,0x20 ; = 32
-	send_command_to_PIC 0xA1 ,40
+	send_command_to_PIC 0xA1 ,0x28
 
 	; Notify Master PIC that there is a slave at at IRQ2 
 	
-	send_command_to_PIC 0x21 ,4
+	send_command_to_PIC 0x21 ,0x4
 
 	; Tell Slave cascade identity = 2 
-	send_command_to_PIC 0xA1 ,2
+	send_command_to_PIC 0xA1 ,0x2
 
 	; Restoring Saved Masks reseting them to 0 , and sending some Default data the chip expects 
 
-	send_command_to_PIC 0x21 ,1
-	send_command_to_PIC 0xA1 ,1
-	send_command_to_PIC 0x21 ,0
-        send_command_to_PIC 0xA1 ,0 
-
-	ret   
+	send_command_to_PIC 0x21 ,0x1
+	send_command_to_PIC 0xA1 ,0x1
+	send_command_to_PIC 0x21 ,0xFD
+    send_command_to_PIC 0xA1 ,0xFD
+	
+	ret
 
 
 ; Defining IRQs
 %macro IRQ 2 
- [GLOBAL irq%1]
+ GLOBAL irq%1
  irq%1:
 	cli  ; disable interrupts 
 	push byte 0 ; dummy Value 
@@ -60,7 +59,7 @@ remap_irq:
 	jmp irq_stub
 %endmacro
 
-IRQ 0 ,  32
+IRQ 0, 32
 IRQ 1, 33  
 IRQ 2, 34  
 IRQ 3, 35  
@@ -79,11 +78,9 @@ IRQ 15, 47
 
 
 
-  
-
 [EXTERN irq_handler]
 irq_stub:
-; Common Code for Handling the interrupt , Saving the processor state before Jumping To the code that will handle the interrupt
+; Common Code for Handxing the interrupt , Saving the processor state before Jumping To the code that will handxe the interrupt
 
         pusha ; pushing edi , esi , ebp , esp , ebx , edx , ecx  , eax  into the stack 
         mov ax , ds ; Save the data segment descripor into the stack 
@@ -97,7 +94,7 @@ irq_stub:
         mov fs, ax
         mov gs, ax
 
-        call irq_handler ; Handling the interrupt
+        call irq_handler ; Handxing the interrupt
 
         ; Restoring all Values and return executing Code before interrupts fires . 
         pop eax ; top of the stack after return contains now old ds Value .
@@ -113,7 +110,7 @@ irq_stub:
         ; even if we push just a byte the stack pointer will move by (32 bits ) that s where 8 comes from 
         ; 8 bytes   
         add esp , 8
-        sti ; Enabling interrupts again (Setting Interrupt Flag to 1 ) 
+        ;sti ; Enabling interrupts again (Setting Interrupt Flag to 1 ) iret will restore the EFLAGS no this is useless !!
 
  	iret ;restore ESP , CS , EIP , EFLAGS , SS before the interrupt trigerred  
 	

@@ -37,8 +37,8 @@ start :
   push ebx ; load multiboot header location
 
   cli ; disable interrupts
- 
   
+   
   call kernel_main
 	
     

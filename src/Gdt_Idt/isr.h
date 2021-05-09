@@ -10,4 +10,10 @@ typedef struct registers_struct
 } registers;
 
 // End of interrupt 
-extern void EOI() ; 
+extern void EOI() ;
+
+
+// interrupts handlers 
+typedef void (*isr)(registers) ; 
+
+void map_handler_interrupt(u8int Nr_interrupt ,isr handler ) ; 

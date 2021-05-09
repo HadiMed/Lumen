@@ -1,6 +1,7 @@
 #include "../common.h"
 #include "idt_gdt.h"
 
+
 // This function will be defined in IDT_GDT.asm , it will load the GDT pointer
 extern void gdt_flush(u32int) ;
 
@@ -29,15 +30,19 @@ idt_ptr IDT ;
 
 void init_gdt_and_idt() {
 
-	init_gdt() ; 
+	
+	init_gdt() ;
 	init_idt() ; 
-
+       	 	
+	 
 }
+
 
 
 // GDT Code 
 static void init_gdt()
 {
+
    GDT.limit = sizeof(gdt_entry) * 5 - 1; // Gets calculated in compilation !
    GDT.base  = (u32int)&gdt_entries;
 
@@ -73,7 +78,7 @@ static void init_idt() {
 	IDT.limit = sizeof(idt_entry) * 256 -1;
    	IDT.base  = (u32int)&idt_entries;
 
-	memset((u8int*)idt_entries , 0 , sizeof(idt_entry)*256) ;// Setting 0 on all fields on all structs . 
+	memset(&idt_entries , 0, sizeof(idt_entry)*256) ;// Setting 0 on all fields on all structs . 
 
 
 	/*by default IRQs mapping are IRQ 0..7  :int 0x8 ... int 0xF ,and 8..15 : 0x70 .. 0x77
@@ -96,7 +101,7 @@ static void init_idt() {
     	idt_set_entry( 9, (u32int)isr9 , 0x08, 0x8E);
     	idt_set_entry(10, (u32int)isr10, 0x08, 0x8E);
     	idt_set_entry(11, (u32int)isr11, 0x08, 0x8E);
-	idt_set_entry(12, (u32int)isr12, 0x08, 0x8E);
+		idt_set_entry(12, (u32int)isr12, 0x08, 0x8E);
     	idt_set_entry(13, (u32int)isr13, 0x08, 0x8E);
     	idt_set_entry(14, (u32int)isr14, 0x08, 0x8E);
     	idt_set_entry(15, (u32int)isr15, 0x08, 0x8E);
@@ -117,7 +122,9 @@ static void init_idt() {
     	idt_set_entry(30, (u32int)isr30, 0x08, 0x8E);
     	idt_set_entry(31, (u32int)isr31, 0x08, 0x8E);
 
-	/*Setting up the IRQs*/
+		
+
+	//Setting up the IRQs
 	idt_set_entry(32, (u32int)irq0, 0x08, 0x8E);
 	idt_set_entry(33, (u32int)irq1, 0x08, 0x8E);
 	idt_set_entry(34, (u32int)irq2, 0x08, 0x8E);

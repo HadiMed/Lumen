@@ -2,20 +2,29 @@
 #include "isr.h"
 #include "../Vga/vga.h"
 
+u32int tick = 0  ; 
 // This gets called from our ASM interrupt handler stub.
 void isr_handler(registers reg)
 {
    VGA_write_string("recieved interrupt : ");
 	// Handling interrupt 
    VGA_write_int(reg.int_no) ; 
+   VGA_write_string("\n") ; 
    switch(reg.int_no) { 
 	case 0 :
-   		VGA_write_string("\nSomeone devided by 0 ?!\n , we should kill the process !\n") ;
+   		VGA_write_string("\nSomeone devided by 0 ?! , we should kill the process !\n") ;
+		break ; 
 		
-	
-	default : 
-		VGA_write_string("\nNo divison by 0\n , returning to main") ;
 
-   } 
-  asm volatile ("hlt") ;   
+	case 8 :
+		VGA_write_string("Tick : ") ;
+		VGA_write_int(tick++) ;
+		VGA_write_string("\n")  ;
+		EOI(0x20); 
+		break ; 
+	default : 
+		
+		break ; 
+   }
+   
 }

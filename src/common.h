@@ -35,6 +35,6 @@ typedef          char  s8int;
 
 
 // Memory functions 
-void memset(u8int * ptr, int value , int size) ; 
+void *memset(void * ptr, char value , int size) ; 
 
 #endif

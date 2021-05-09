@@ -49,16 +49,16 @@ typedef struct idt_ptr_struct idt_ptr;
 void init_gdt_and_idt() ; 
 
 // ISRs will be defined 
-extern void isr0 ();
-extern void isr1 ();
-extern void isr2 ();
-extern void isr3 ();
-extern void isr4 ();
-extern void isr5 ();
-extern void isr6 ();
-extern void isr7 ();
-extern void isr8 ();
-extern void isr9 ();
+extern void isr0();
+extern void isr1();
+extern void isr2();
+extern void isr3();
+extern void isr4();
+extern void isr5();
+extern void isr6();
+extern void isr7();
+extern void isr8();
+extern void isr9();
 extern void isr10();
 extern void isr11();
 extern void isr12();
@@ -91,7 +91,7 @@ extern void remap_irq() ;
 
 
 // IRQs defined here
-extern void irq0(); 
+extern void irq0();
 extern void irq1();
 extern void irq2();
 extern void irq3();
