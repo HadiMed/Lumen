@@ -10,6 +10,7 @@ int kernel_main(struct multiboot *mboot) {
 init_gdt_and_idt() ; 
 
 // intilisating the Programmable interval timer 
+init_timer(100); // f = 100Hz  
 
 
 
@@ -17,9 +18,6 @@ init_gdt_and_idt() ;
 VGA_write_string(Entry_message);
 
 keyboard_install() ; 
-
-// PIT initalizing 
-init_timer(100); // f = 100Hz  
 
 
 // Ready to receive interrupts !
