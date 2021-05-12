@@ -1,3 +1,5 @@
+#ifndef ISR_H
+#define ISR_H
 #include "../common.h"
 
 // This struct is based on how the isr_stub will push data into the stack 
@@ -17,3 +19,4 @@ extern void EOI() ;
 typedef void (*isr)(registers) ; 
 
 void map_handler_interrupt(u8int Nr_interrupt ,isr handler ) ; 
+#endif

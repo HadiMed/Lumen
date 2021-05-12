@@ -44,7 +44,7 @@ remap_irq:
 	send_command_to_PIC 0x21 ,0x1
 	send_command_to_PIC 0xA1 ,0x1
 	send_command_to_PIC 0x21 ,0xFD
-    send_command_to_PIC 0xA1 ,0xFD
+    	send_command_to_PIC 0xA1 ,0xFD
 	
 	ret
 
@@ -94,7 +94,7 @@ irq_stub:
         mov fs, ax
         mov gs, ax
 
-        call irq_handler ; Handxing the interrupt
+        call irq_handler ; Handling the interrupt
 
         ; Restoring all Values and return executing Code before interrupts fires . 
         pop eax ; top of the stack after return contains now old ds Value .
@@ -110,7 +110,7 @@ irq_stub:
         ; even if we push just a byte the stack pointer will move by (32 bits ) that s where 8 comes from 
         ; 8 bytes   
         add esp , 8
-        ;sti ; Enabling interrupts again (Setting Interrupt Flag to 1 ) iret will restore the EFLAGS no this is useless !!
+        sti ; Enabling interrupts again (Setting Interrupt Flag to 1 ) iret will restore the EFLAGS no this is useless !!
 
  	iret ;restore ESP , CS , EIP , EFLAGS , SS before the interrupt trigerred  
 	
@@ -118,5 +118,5 @@ irq_stub:
 [GLOBAL EOI] 
 EOI:       ; End of interrupt 
 	mov eax , [esp + 4] ; port 
-	send_command_to_PIC ax ,  0x20
+	send_command_to_PIC 0x20 , al 
 	ret 

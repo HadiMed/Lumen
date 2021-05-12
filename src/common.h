@@ -33,6 +33,9 @@ typedef unsigned char  u8int;
 typedef          char  s8int;
 
 
+void outb(u16int port, u8int value) ; 
+
+u8int inb(u16int port);
 
 // Memory functions 
 void *memset(void * ptr, char value , int size) ; 

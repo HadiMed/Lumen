@@ -101,7 +101,7 @@ static void init_idt() {
     	idt_set_entry( 9, (u32int)isr9 , 0x08, 0x8E);
     	idt_set_entry(10, (u32int)isr10, 0x08, 0x8E);
     	idt_set_entry(11, (u32int)isr11, 0x08, 0x8E);
-		idt_set_entry(12, (u32int)isr12, 0x08, 0x8E);
+	idt_set_entry(12, (u32int)isr12, 0x08, 0x8E);
     	idt_set_entry(13, (u32int)isr13, 0x08, 0x8E);
     	idt_set_entry(14, (u32int)isr14, 0x08, 0x8E);
     	idt_set_entry(15, (u32int)isr15, 0x08, 0x8E);
