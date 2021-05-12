@@ -11,7 +11,7 @@ void irq_handler(registers reg) {
 		
 	//VGA_write_int(inb(0x60)) ; 
 
-	//VGA_write_string("\n") ; 
+	//VGA_write_string("timer \n") ; 
 	/* Send end of interrupt signal to PICs */ 
 	/* Checking if interrupt involved the slave */ 
 	if(reg.int_no >= 40) {

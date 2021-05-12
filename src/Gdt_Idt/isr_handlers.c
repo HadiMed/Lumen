@@ -2,7 +2,7 @@
 #include "isr.h"
 #include "../Vga/vga.h"
 
-u32int tick = 0  ; 
+
 // This gets called from our ASM interrupt handler stub.
 void isr_handler(registers reg)
 {
@@ -15,15 +15,8 @@ void isr_handler(registers reg)
    		VGA_write_string("\nSomeone devided by 0 ?! , we should kill the process !\n") ;
 		break ; 
 		
-
-	case 8 :
-		VGA_write_string("Tick : ") ;
-		VGA_write_int(tick++) ;
-		VGA_write_string("\n")  ;
-		EOI(0x20); 
-		break ; 
 	default : 
-		
+
 		break ; 
    }
    

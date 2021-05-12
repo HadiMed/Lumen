@@ -39,12 +39,12 @@ remap_irq:
 	; Tell Slave cascade identity = 2 
 	send_command_to_PIC 0xA1 ,0x2
 
-	; Restoring Saved Masks reseting them to 0 , and sending some Default data the chip expects 
+	;  enabling all interrupts by setting the mask to 0x00  , and sending some Default data the chip expects 
 
 	send_command_to_PIC 0x21 ,0x1
 	send_command_to_PIC 0xA1 ,0x1
-	send_command_to_PIC 0x21 ,0xFD
-    	send_command_to_PIC 0xA1 ,0xFD
+	send_command_to_PIC 0x21 ,0x00
+    	send_command_to_PIC 0xA1 ,0x00
 	
 	ret
 
