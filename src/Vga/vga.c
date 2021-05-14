@@ -1,4 +1,5 @@
 #include "vga.h"
+
 // See declarations and comments on Header file
 
 
@@ -39,7 +40,7 @@ static void VGA_scroll() {
 
 void VGA_put(char caracter_code) {
 
-	u8int color = COLOR_BLACK << 4 /*background*/| COLOR_RED /* foreground */ ;
+	u8int color = COLOR_BLACK << 4 /*background*/| COLOR_GREEN /* foreground */ ;
 	u16int * position ; 
 
 	switch(caracter_code) {
@@ -105,6 +106,18 @@ void VGA_write_string(char *c ) {
 	while(c[i]) VGA_put(c[i++]) ; 
 	
 }
+
+void print_with_delay(char *c , u32int delay) {
+	
+	u32int i = 0 ;
+
+	while(c[i]) {
+		VGA_put(c[i++]) ; 
+		
+		sleep(delay) ; 
+	}	
+
+}	
 // Print int to screen 
 void VGA_write_int(s32int number) {
 

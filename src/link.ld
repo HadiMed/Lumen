@@ -3,9 +3,15 @@ OUTPUT_FORMAT("elf32-i386");
 ENTRY(start)
 SECTIONS
 {
+
+  
+  
   .text 0x100000 :
   {
     code = .; _code = .; __code = .;
+    
+    *(.mboot)  
+
     *(.text)
     . = ALIGN(4096);
   }

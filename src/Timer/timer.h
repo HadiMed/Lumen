@@ -9,4 +9,7 @@ void init_timer(u32int frequency) ;
 
 void timer_handler()  ; 
 
+void sleep(u32int) ; 
+
+
 #endif

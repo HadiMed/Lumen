@@ -1,7 +1,10 @@
 #include "timer.h"
 #include "../common.h"
+#include "../Gdt_Idt/isr.h"
+#include "../Vga/vga.h"
 
 u32int tick = 0 ; 
+u32int milisec = 0 ;  
 
 void init_timer(u32int frequency){
 	  
@@ -19,18 +22,29 @@ void init_timer(u32int frequency){
 	map_handler_interrupt(32 , timer_handler) ; 
 	                                         
 }
-
+// Each 10 ms we will get an interrupt 
 void timer_handler() {
 
-	tick++ ;  
-
-	if(tick==100) {
-		VGA_write_string("tik tok\n") ;  
-		tick = 0; 
-		}
+	 tick++ ;
+	 milisec++ ; 
+	 tick = 0 ;
+	      //	time() ; 	
+			
 
 }
 
+void sleep(u32int miliseconds) {
 
+	u32int  old_tick = milisec ; 
 
+	while ( milisec  < old_tick + miliseconds ) ;   
+
+}
+
+void time() { 
+
+	VGA_write_string("seconds elapsed : ");  
+	VGA_write_int(milisec) ; 
+	VGA_write_string("\n") ; 
+}
 

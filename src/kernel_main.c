@@ -12,16 +12,32 @@ init_gdt_and_idt() ;
 // intilisating the Programmable interval timer 
 init_timer(100); // f = 100Hz  
 
-
-
-// Entry message
-VGA_write_string(Entry_message);
-
 keyboard_install() ; 
 
 
 // Ready to receive interrupts !
 asm volatile ("sti") ; 
+
+
+
+// delay = 10 * number ms  
+print_with_delay(Entry_message, 1) ; 
+
+print_with_delay("Kernel initializing ...\n", 50) ;
+
+sleep(200) ; 
+
+reset_screen() ; 
+
+print_with_delay("Kernel initialized , Welcome Back mr Andersson\n",10) ;
+
+sleep(300) ; 
+
+
+
+print_with_delay("Use headphones for best experience. :p \n",10) ; 
+
+
 
 
 for(;;) ;

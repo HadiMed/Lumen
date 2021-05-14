@@ -1,7 +1,7 @@
 #include "../common.h"
 #include "../Gdt_Idt/isr.h"
 #include "keyboard.h"
-
+#include "../Vga/vga.h"
 
  u8int keyboard[128] = 
     {

@@ -9,13 +9,17 @@ MBOOT_CHECKSUM      equ -(MBOOT_HEADER_MAGIC + MBOOT_HEADER_FLAGS)
 
 [BITS 32] 
 
+
+
+
 [GLOBAL mboot] ; mboot accessible from C 
 [EXTERN code]
 [EXTERN bss]
 [EXTERN end]
 
 ; Creating the multiboot struct
-mboot : 
+section .mboot 
+mboot: 
   dd MBOOT_HEADER_MAGIC 
 
   dd  MBOOT_HEADER_FLAGS        
@@ -27,7 +31,7 @@ mboot :
   dd  end                       
   dd  start
 
-
+section .text
 [GLOBAL start]
 [EXTERN kernel_main] 
 
