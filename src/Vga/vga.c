@@ -1,4 +1,5 @@
 #include "vga.h"
+#include "../Timer/timer.h"
 
 // See declarations and comments on Header file
 

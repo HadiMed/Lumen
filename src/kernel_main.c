@@ -23,7 +23,7 @@ asm volatile ("sti") ;
 // delay = 10 * number ms  
 print_with_delay(Entry_message, 1) ; 
 
-print_with_delay("Kernel initializing ...\n", 50) ;
+print_with_delay("Kernel initializing ...\n", 10) ;
 
 sleep(200) ; 
 
@@ -32,10 +32,12 @@ reset_screen() ;
 print_with_delay("Kernel initialized , Welcome Back mr Andersson\n",10) ;
 
 sleep(300) ; 
+ 
+print_with_delay("Trust no one, nor a zero. Both lie.\n" , 10) ; 
+sleep(300) ; 
+print_with_delay("Current instruction pointer EIP = 0x41414141\n",10) ; 
 
-
-
-print_with_delay("Use headphones for best experience. :p \n",10) ; 
+//print_with_delay("Use headphones for best experience. :p \n",10) ; 
 
 
 
