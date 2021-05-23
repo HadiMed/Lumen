@@ -41,7 +41,7 @@ static void VGA_scroll() {
 
 void VGA_put(char caracter_code) {
 
-	u8int color = COLOR_BLACK << 4 /*background*/| COLOR_GREEN /* foreground */ ;
+	u8int color = COLOR_BLACK << 4 /*background*/| COLOR_MAGENTA /* foreground */ ;
 	u16int * position ; 
 
 	switch(caracter_code) {

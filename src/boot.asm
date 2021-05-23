@@ -47,6 +47,6 @@ start :
 	
     
 ; in case we return from the main we jmp in the current instruction(infinite loop) to prevent execution further .   
-  jmp $
+;  jmp $
 
 
