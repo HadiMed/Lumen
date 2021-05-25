@@ -16,12 +16,12 @@ clean:
 
 link:$(OBJECTS)
 	@echo  "[+]Compilation Successfull"
-	$(info ************  Linking ************)
+	@echo "************  Linking ************"
 	ld -melf_i386 $(LDFLAGS) -o kernel $^  
 	mv kernel ../image/boot/kernel
 	grub-mkrescue -o ../miniKern.iso ../image/
 	qemu-system-i386 -cdrom ../miniKern.iso
-	@echo -n "Done!"
+	@echo  "Kernel exiting , Done!"
 
 %.o : %.c
 	@echo -n "[+]GCC: \t"
