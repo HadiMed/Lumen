@@ -47,6 +47,12 @@ void VGA_put(char caracter_code) {
 	switch(caracter_code) {
 
 		case 0x08 /*backspace*/:
+			if(! ( Crs.cursor_x || Crs.cursor_y ) ) 
+			/* is the cursor in beginning of terminal */
+			return ;
+
+
+
 			if(Crs.cursor_x==0) {/*if the cursor is in the start of the line */
 				Crs.cursor_x=79 ; 
 				Crs.cursor_y-- ; 
