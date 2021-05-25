@@ -38,13 +38,15 @@ void keyboard_install() {
 
 void keyboard_handler(registers reg ) // When interrupt 33 will fire , this handler will get executed 
 { 
-    	/* When a key is pressed a byte is set on the port 0x60 , each byte represents a button on 
+    	
+
+	/* When a key is pressed a byte is set on the port 0x60 , each byte represents a button on 
 	the keyboard , we map the keyboard buttons to ASCII caracters , on the array "keyboard" , 
 	when a key is released another byte is set on the same port , basicly the byte is KEYCODE + 128  */
 
 	u8int scancode = inb(0x60) ;
 	
-	if(scancode == KEY_LSHIFT + 128) 
+	if(scancode == KEY_LSHIFT + 128 || scancode == KEY_RSHIFT + 128) 
 
 	{
 	/*scancode for release key is scancode for press + 128 , shift released we drop back to
@@ -56,7 +58,8 @@ void keyboard_handler(registers reg ) // When interrupt 33 will fire , this hand
 
 	else {
 
-	if(scancode==KEY_LSHIFT) { /* while we have shift pressed we save state of the flag   */
+	if(scancode==KEY_LSHIFT || scancode==KEY_RSHIFT) { 
+	/* while we have shift pressed we save state of the flag   */
 
 	Shift_flag=1 ;
 
