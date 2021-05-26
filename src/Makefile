@@ -19,10 +19,12 @@ link:$(OBJECTS)
 	@echo "************  Linking ************"
 	ld -melf_i386 $(LDFLAGS) -o kernel $^  
 	mv kernel ../image/boot/kernel
-	grub-mkrescue -o ../miniKern.iso ../image/
-	qemu-system-i386 -cdrom ../miniKern.iso
+	@echo "Removing object files . "
+	rm */*.o *.o 2> /dev/null 
+	grub-mkrescue -o ../lumen.iso ../image/
+	qemu-system-i386 -cdrom ../lumen.iso
 	@echo  "Kernel exiting , Done!"
-
+	
 %.o : %.c
 	@echo -n "[+]GCC: \t"
 	$(CC) $(CFLAGS) -c $< -o $@
