@@ -31,5 +31,5 @@ SECTIONS
     . = ALIGN(4096);
   }
 
-  end = .; _end = .; __end = .;
+  start_available_mem = .; _start_available_mem = .; __start_available_mem = .;
 }

@@ -80,7 +80,7 @@ IRQ 15, 47
 
 [EXTERN irq_handler]
 irq_stub:
-; Common Code for Handxing the interrupt , Saving the processor state before Jumping To the code that will handxe the interrupt
+; Common Code for Handling the interrupt , Saving the processor state before Jumping To the code that will handxe the interrupt
 
         pusha ; pushing edi , esi , ebp , esp , ebx , edx , ecx  , eax  into the stack 
         mov ax , ds ; Save the data segment descripor into the stack 
