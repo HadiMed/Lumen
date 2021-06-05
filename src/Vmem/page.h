@@ -2,7 +2,7 @@
 #define PAGING_H 
 
 #include "../common.h"
-
+#include "../ 3"
 /* Page struct definition . reserved bits are for CPU use .*/ 
 typedef struct page {
 
@@ -32,8 +32,19 @@ typedef struct page_directory {
 	/* Used later */
 	u32int tablesPhy[1024] ;  
 	
+	u32int Paddr ; 
+} page_directory ; 
 
-} 
+/* initialize paging , setting up page directories...*/
+void init_paging() ;  
+
+/* load page directorty into the CR3 register */
+extern void switch_page_dir(page_directory * )
+
+/* page faults handler */ 
+void page_fault(registers) ;  
+
+
 
 
  

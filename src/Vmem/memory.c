@@ -41,3 +41,40 @@ u32int kernel_alloc_align(u32int size )
 return LUalloc(size , 1 , 0) ; 
 
 }
+
+/* Frames management */
+
+u32int * frames ; 
+u32int frames_count ;  
+
+/* For optimization purposes , since we need to keep track of state of each frame of memory 
+we can use boolean values , which means the state of each frame will be stored as one bit (some sort of a bitmap) , now since in each element of the array we have 32 bits , all 32 first frames will be stored in the first element of the array */ 
+
+
+/*Functions to change frames state , verify frame state */
+static void set_frame(u32int addr) 
+{
+	u32int frame_number = addr / 0x1000 ; 
+	u32int index = frame_number / 32  ; 
+	u32int offset = frame_number % 32 ; 
+	frames[index] |= (0x1 << offset) ;  
+}
+
+static u8int isset_frame(u32int addr) 
+{
+ 	u32int frame_number = addr / 0x1000 ;
+ 	u32int index = frame_number / 32  ;
+ 	u32int offset = frame_number % 32 ;
+	return ( frames[index] >> offset ) & 0x1 ;  
+}
+
+static void clear_frame(u32int addr)
+{
+	u32int frame_number = addr / 0x1000 ;
+        u32int index = frame_number / 32  ;
+        u32int offset = frame_number % 32 ;
+	frames[index] &= ~(0x1 << offset) ;
+
+}
+
+
