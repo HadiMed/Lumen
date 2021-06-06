@@ -77,4 +77,25 @@ static void clear_frame(u32int addr)
 
 }
 
+static u32int find_free_frame()
+{
+	/* function return 0xFFFFFFFF if there is no free frame */
 
+	/* this function return the index of the free frame*/
+
+	for (int i=0 ; i< (frames_count / 32) ; i++) 
+	{
+		if(frames[i]==0xFFFFFFFF) continue ; /* all 32 first frames are not free*/
+
+		/* else */
+
+		for(int j=0 ; j < 32 ; j++) 
+		{
+			if (!(frames[i]>>j & 0x1) ) return i*32 + j ;  
+		}
+	}
+
+	/* no free frame */ 
+	
+	return 0xFFFFFFFF ; 
+}
