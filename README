@@ -16,4 +16,8 @@ for now only text mode (NO VESA ) is available .
   handler code(check IDT_GDT_ASM.asm).  
 [+] IRQs:
   Interrupt requests are remapped to 32--47 to not conflict with CPU exceptions 
-[+] Keyboard driver and Timer .  
+[+] Keyboard driver and Timer :  
+  support for special caracters , PIT set at 100 Mhz . 
+  
+[+] paging :
+  frames allocation , deallocation , pages of size 4KB .
