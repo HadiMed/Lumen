@@ -24,6 +24,19 @@ typedef struct multiboot {
 
 }multiboot ; 
 
+#ifdef PANIC_LOOP
+
+#define KERNEL_PANIC(x)  \
+	VGA_write_string(x) ; \
+	while(1) ; 
+
+#else
+
+#define KERNEL_PANIC(x) \
+	return 
+
+#endif
+
 
 typedef unsigned int   u32int;
 typedef          int   s32int;
@@ -31,6 +44,7 @@ typedef unsigned short u16int;
 typedef          short s16int;
 typedef unsigned char  u8int;
 typedef          char  s8int;
+
 
 
 void outb(u16int port, u8int value) ; 

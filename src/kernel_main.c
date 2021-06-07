@@ -4,6 +4,9 @@
 #include "Keyboard/keyboard.h"
 #include "Timer/timer.h"
 
+#define PANIC_LOOP
+
+
 int kernel_main(struct multiboot *mboot) {
 
 // Initialization of IDT and GDT 

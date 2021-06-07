@@ -1,4 +1,7 @@
 #include "memory.h"
+#include "../common.h"
+#include "page.h"
+
 
 /* last Section in linker script , basicly all remaining memory after the BSS section */
 
@@ -98,4 +101,34 @@ static u32int find_free_frame()
 	/* no free frame */ 
 	
 	return 0xFFFFFFFF ; 
+}
+
+void allocate_frame(page_entry * pg , int ring , int write_flag)
+{
+	/* allocate frame for a page in memory */
+	if ( pg->frame!=0 ) return ; /*is this page already in some frame in mem ? */
+
+	u32int index = find_free_frame() ; 
+
+	if (index == 0xFFFFFFFF) KERNEL_PANIC("No free frames") ; /* last frame ? */
+
+	set_frame(index * 0x1000) ; 
+
+	pg->present = 1 ; 
+
+	pg->read_write = (write_flag) ? 1 : 0 ; /* writable page ? */
+
+	pg->ring = (ring) ? 0 : 1 ;  /* 0 means kernel mode */ 	
+
+	pg->frame=index ; 
+}
+
+
+void free_frame(page_entry * pg)
+{
+	if (!(pg->frame)) return ; 
+
+	clear_frame(pg->frame) ; 
+
+	pg->frame = 0 ; 
 }
