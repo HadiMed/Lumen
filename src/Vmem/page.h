@@ -3,12 +3,14 @@
 
 #include "../common.h"
 #include "../Gdt_Idt/isr.h"
+#include "page.h"
+
 /* Page struct definition . reserved bits are for CPU use .*/ 
 typedef struct page {
 
 	u32int present : 1 ;/* is page present in mem ? */
-	u32int read_write : 1 ;/* is the page read-only ? or read write */ 
-	u32int ring : 1 ;/* is it a kernel page ? or a usermode page */
+	u32int read_write : 1 ;/* is the page read-only ? or read write (1 for writable)*/ 
+	u32int ring : 1 ;/* is it a kernel page ? or a usermode page (1 for usermode) */
 	u32int reserved : 2 ; 
 	u32int accessed : 1 ;/* has the page been accessed since last mem refresh ? */ 
 	u32int written : 1 ;/* is page been written to ?*/
@@ -39,9 +41,12 @@ typedef struct page_directory {
 void init_paging() ;  
 
 /* load page directorty into the CR3 register */
-extern void switch_page_dir(page_directory * ) ;
+extern void change_directory_page(page_directory * ) ;
 
 /* page faults handler */ 
 void page_fault(registers) ;
+
+/* */
+page_entry * g_page(u32int address , page_directory * directory) ;
 
 #endif  

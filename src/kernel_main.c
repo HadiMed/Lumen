@@ -3,15 +3,18 @@
 #include "Gdt_Idt/idt_gdt.h"
 #include "Keyboard/keyboard.h"
 #include "Timer/timer.h"
-
+#include "Vmem/page.h"
 #define PANIC_LOOP
 
 
 int kernel_main(struct multiboot *mboot) {
 
 // Initialization of IDT and GDT 
-init_gdt_and_idt() ; 
-
+init_gdt_and_idt() ;
+ 
+// initialise paging
+init_paging() ;
+ 
 // intilisating the Programmable interval timer 
 init_timer(100); // f = 100Hz  
 
