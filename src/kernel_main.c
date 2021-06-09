@@ -49,10 +49,16 @@ print_with_delay("Current instruction pointer EIP = 0x41414141\n",10) ;
 VGA_write_string("Bye . ") ; 
 
 /* PAGE FAULT test */
-
-u32int *random_address = (u32int*) 0x20000000 ;
+/*this will give a page fault */
+u32int *random_address = (u32int*) 0x10000000 ;
 // lets access it 
 random_address=(u32int)*random_address ;
+
+/* but this no  */
+u32int *random_address = (u32int*) 0x44444 ;
+ // lets access it 
+random_address=(u32int)*random_address ;
+
 /* saving cpu energy , hlt will halt the procesor till the next interrupt appear 
 , we handle that interrupt and we halt again */
  
