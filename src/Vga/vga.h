@@ -49,7 +49,9 @@ void reset_screen();
 void VGA_write_string(char *c);
 
 // write a int number  
-void VGA_write_int(s32int);
+void VGA_write_int(u32int);
+
+void VGA_write_hex(u32int) ; 
 
 // print string with a delay of seconds 
 void print_with_delay(char * c , u32int delay ) ; 

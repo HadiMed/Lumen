@@ -126,7 +126,7 @@ void print_with_delay(char *c , u32int delay) {
 
 }	
 // Print int to screen 
-void VGA_write_int(s32int number) {
+void VGA_write_int(u32int number) {
 
 	s32int temp = number/10 ;
 
@@ -150,13 +150,27 @@ void VGA_write_int(s32int number) {
 	       	pow /= 10 ; 	
 
 		number_of_digits-- ; 
-	
-
-		
-
-	}
+		}
 }
 
+void VGA_write_hex(u32int number) {
+
+	char hex[6] = {'A' , 'B' , 'C' , 'D' , 'E' , 'F'} ;
+	u8int n_byte=0 ;
+		
+	/* this approach gives me the ability to change the size of number in future , in condition to
+	change shiftrange and ex variables .*/	
+	
+	for(u32int ex=0xF0000000 , shiftrange=28 ; shiftrange+4 ;ex>>=4 , shiftrange-=4 ) 
+	{
+		n_byte = (number & ex) >> shiftrange ;
+
+	 	if (n_byte >= 10  ) VGA_put(hex[n_byte-10]) ;
+
+		else VGA_write_int(n_byte) ;
+	}
+
+} 
 
 void reset_screen() { 
 

@@ -101,8 +101,9 @@ void page_fault(registers reg)
 	if(reg.err_code & 0x4 )
 		VGA_write_string("attempting something there user ?\n") ;
 
-	VGA_write_string("at address : ") ;
-	VGA_write_int(fault_add) ; 
+	VGA_write_string("at address : 0x") ;
+	VGA_write_hex(fault_add) ; 
+	asm volatile ("hlt") ;
 	VGA_write_string("\n") ;
 	KERNEL_PANIC("sheesh page fault") ; 
 

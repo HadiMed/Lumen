@@ -24,8 +24,7 @@ keyboard_install() ;
 // Ready to receive interrupts !
 asm volatile ("sti") ; 
 
-
-
+ 
 // delay = 10 * number ms  
 print_with_delay(Entry_message, 1) ; 
 
@@ -52,12 +51,12 @@ VGA_write_string("Bye . ") ;
 /*this will give a page fault */
 u32int *random_address = (u32int*) 0x10000000 ;
 // lets access it 
-random_address=(u32int)*random_address ;
+u32int a_random_address=(u32int)*random_address ;
 
 /* but this no  */
-u32int *random_address = (u32int*) 0x44444 ;
+//u32int *random_address = (u32int*) 0x44444 ;
  // lets access it 
-random_address=(u32int)*random_address ;
+//random_address=(u32int)*random_address ;
 
 /* saving cpu energy , hlt will halt the procesor till the next interrupt appear 
 , we handle that interrupt and we halt again */
