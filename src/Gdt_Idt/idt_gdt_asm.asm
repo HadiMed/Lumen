@@ -68,7 +68,7 @@ ISR_NOERR 30
 ISR_NOERR 31
 
 
-[extern isr_handler] 
+[extern irq_handler] 
 [GLOBAL isr_stub]
 isr_stub: 
 ; Common Code for Handling the interrupt , Saving the processor state before Jumping To the code that will handle the interrupt
@@ -85,7 +85,7 @@ isr_stub:
    	mov fs, ax
   	mov gs, ax 
 
-	call isr_handler ; Handling the interrupt
+	call irq_handler ; Handling the interrupt
 
 	; Restoring all Values and return executing Code before interrupts fires . 
 	pop eax ; top of the stack after return contains now old ds Value .

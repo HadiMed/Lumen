@@ -2,7 +2,7 @@
 #include "memory.h"
 #include "../common.h"
 #include "../Gdt_Idt/isr.h"
-
+#include "../Vga/vga.h"
 
 /* paging */
 
@@ -85,5 +85,25 @@ page_entry * g_page(u32int address , page_directory * directory)
 
 void page_fault(registers reg) 
 {
-return ;
+	/*by default when a page fault occur , the fault address is stored on cr2 */
+	u32int fault_add ; 
+	
+	asm volatile("mov %%cr2, %0" : "=r" (fault_add));
+
+	/* error code pushed by the cpu gives us information about the fault cause */
+
+	if (!(reg.err_code & 0x1)) 
+		VGA_write_string("Page not Present in Memory , ") ; 
+
+	if(reg.err_code & 0x2)
+		VGA_write_string("Read-only page \n") ;
+
+	if(reg.err_code & 0x4 )
+		VGA_write_string("attempting something there user ?\n") ;
+
+	VGA_write_string("at address : ") ;
+	VGA_write_int(fault_add) ; 
+	VGA_write_string("\n") ;
+	KERNEL_PANIC("sheesh page fault") ; 
+
 }
