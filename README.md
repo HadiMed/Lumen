@@ -8,7 +8,6 @@ Multiboot is a standard to which GRUB expects a kernel to comply. It is a way fo
   ```
   Know exactly what environment the kernel wants/needs when it boots. 
   llow the kernel to query the environment it is in.
-    
-  ```
+ ```
   
     
