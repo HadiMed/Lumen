@@ -5,8 +5,10 @@ Lumen is a 32 bit Kernel on (INTEL x86 systems ) that implements importants part
 ### BOOT
 Lumen is using GRUB as bootloader , GRUB set up protected mode for the kernel , and transfer control to our ``` boot.asm ``` code , the bootloader force us to put the multiboot header in the beginning of our partition (boot code) .
 Multiboot is a standard to which GRUB expects a kernel to comply. It is a way for the bootloader to
-  ```Know exactly what environment the kernel wants/needs when it boots. 
-    Allow the kernel to query the environment it is in.
+  ```
+  Know exactly what environment the kernel wants/needs when it boots. 
+  llow the kernel to query the environment it is in.
+    
   ```
   
     
