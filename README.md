@@ -26,8 +26,8 @@ prinT_with_delay : print a string with a time delay
 ### Segmentation and interrupts 
 Segmentation and interrupts are implemented in the folder ***Gdt_Idt***
 
-#### -1-Segmentation :
+1. Segmentation :
   Segmentation is an old technology its not the main way of splitting , managing memory currently , its built-in on the x86 architecutre but for background compatiblity it does still need to be implemented, its a way of implementing  memory protection on the x86 architecture ; With segmentation, every memory access is evaluated with respect to a segment. That is, the memory address is added to the segment's base address, and checked against the segment's length. You can think of a segment as a window into the address space - The process does not know it's a window, all it sees is a linear address space starting at zero and going up to the segment length . <br/>
     **the way its implemented in LUMEN :** <br/>
     since the CPU expects at least 4 segments , there is 5 segments one NULL (reserved) , 2 for kernel mode (code , segments) , 2 for user mode (code , segment) all overlaped at the address range ```0x00000000``` to ```0xFFFFFFFF``` the DRAM range . 
-    
+2. Interrupts :    
