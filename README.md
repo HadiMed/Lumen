@@ -20,4 +20,5 @@ this driver implements the basic functionality of a video card communication thr
 VGA_put : print a char to the screen 
 VGA_write_int : print an integer to the screen  
 VGA_write_hex  : print an integer as a hexdecimal value (32 BITS values , but the function can be  easily scalable)
-prinT_with_delay : print a string with a time delay ```
+prinT_with_delay : print a string with a time delay 
+```
