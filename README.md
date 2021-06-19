@@ -42,6 +42,6 @@ Segmentation and interrupts are implemented in the folder ***Gdt_Idt***
 
   - The PIT has an internal clock which oscillates at approximately 1.1931MHz. This clock signal is fed through a frequency divider, to modulate the final output frequency. It has 3 channels, each with it's own frequency divider.
 
-  - Channel 0 is the most useful. It's output is connected to IRQ0.
-  - Channel 1 is very un-useful and on modern hardware is no longer implemented. It used to control refresh rates for DRAM.
-  - Channel 2 controls the PC speaker.
+    - Channel 0 is the most useful. It's output is connected to IRQ0.
+    - Channel 1 is very un-useful and on modern hardware is no longer implemented. It used to control refresh rates for DRAM.
+    - Channel 2 controls the PC speaker.
