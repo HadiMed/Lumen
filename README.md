@@ -37,3 +37,11 @@ Segmentation and interrupts are implemented in the folder ***Gdt_Idt***
  - ***the way its implemented in LUMEN:***<br/>
     - all 32 first interrupts are configured correctly , CPU get notified when some interrupt arrive and handled correctly by saving the CPU state and and calling the adequate handler  code(check IDT_GDT_ASM.asm , irq_handlers.asm) .
     -  Interrupt requests are remapped to 32--47 to not conflict with CPU exceptions .
+3. ***PIT (Programmable interval timer):***<br/>
+  - The programmable interval timer is a chip connected to IRQ0. It can interrupt the CPU at a user-defined rate (between 18.2Hz and 1.1931 MHz). The PIT is the primary method used for implementing a system clock and the only method available for implementing multitasking (switch processes on interrupt).<br/>
+
+The PIT has an internal clock which oscillates at approximately 1.1931MHz. This clock signal is fed through a frequency divider, to modulate the final output frequency. It has 3 channels, each with it's own frequency divider.
+
+  - Channel 0 is the most useful. It's output is connected to IRQ0.
+  - Channel 1 is very un-useful and on modern hardware is no longer implemented. It used to control refresh rates for DRAM.
+  - Channel 2 controls the PC speaker.
