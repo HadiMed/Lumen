@@ -72,9 +72,8 @@ Segmentation and interrupts are implemented in the folder ***Gdt_Idt***
    -  again here , paging is built-in the in the x86 architecture , they use a 2-tier system. The CPU gets told about a page directory, which is a 4KB large table, each entry of which points to a page table. The page table is, again, 4KB large and each entry is a page table entry, described underneath.  
    -  This way, The entire 4GB address space can be covered with the advantage that if a page table has no entries, it can be freed and it's present flag unset in the page directory. <br/>
    - <img src="/assets/images/page_directory.png" /> <br/>
-
-3. ***the way its implemented in Lumen: *** <br/>
+3. ***the way its implemented in Lumen:*** <br/>
    - for now the kernel work with  the first 1 GB of ram **(PS :if the env you are testing in doesnt have 1 GB of ram please change the value in page.c line 9 )** , init paging will be run on the intialization of the kernel , it will split the kernel space into pages ,allocate frames for all the pages and mark thoose pages as kernel mode pages , read only , and enable paging by moving the pages directory into cr3 and Oring cr0 with 0x80000000 
    -  for newer allocations , the developer can call the function allocate_frame that will search for available frames , with g_page that will create new page .
-   -  ***Page Faults: *** <br/>
-    - when a page fault occur (Access to kernel pages , access to an address not in a paging range , write to read only address ... ) the function the interrupt 14 will be fired and it will call page_fault handler to check the error_code on the stack and respond adequately .
+   -  ***Page Faults:*** <br/>
+      - when a page fault occur (Access to kernel pages , access to an address not in a paging range , write to read only address ... ) the interrupt 14 will be fired and it will call page_fault handler to check the error_code on the stack and respond adequately .
