@@ -52,19 +52,19 @@ Segmentation and interrupts are implemented in the folder ***Gdt_Idt***
  <br/>
  <img src="/assets/images/page_entry.png"/> <br/> <br/>
   - **P :**<br/>
-      - Set if the page is present in memory.
+    - Set if the page is present in memory.
   - **R/W :**<br/>
-      - If set, that page is writeable. If unset, the page is read-only. This does not apply when code is running in kernel-mode (unless a flag in CR0 is set).
+    - If set, that page is writeable. If unset, the page is read-only. This does not apply when code is running in kernel-mode (unless a flag in CR0 is set).
   - **U/S :**<br/>
-      - If set, this is a user-mode page. Else it is a supervisor (kernel)-mode page. User-mode code cannot write to or read from kernel-mode pages.
+    - If set, this is a user-mode page. Else it is a supervisor (kernel)-mode page. User-mode code cannot write to or read from kernel-mode pages.
   - **Reserved :**<br/>
-      - These are used by the CPU internally and cannot be trampled.
+    - These are used by the CPU internally and cannot be trampled.
   - **A :**<br/>
-    Set if the page has been accessed (Gets set by the CPU).
+    - Set if the page has been accessed (Gets set by the CPU).
   - **D :**<br/>
-    Set if the page has been written to (dirty).
+    - Set if the page has been written to (dirty).
   - **AVAIL :**<br/>
-    These 3 bits are unused and available for kernel-use.
+    - These 3 bits are unused and available for kernel-use.
   - **Page frame address:**<br/>
-    The high 20 bits of the frame address in physical memory.
+    - The high 20 bits of the frame address in physical memory.
  
