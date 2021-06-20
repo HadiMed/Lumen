@@ -11,7 +11,7 @@ Multiboot is a standard to which GRUB expects a kernel to comply. It is a way fo
  ```
   
     
-### II.display (VGA text mode )
+### II. display (VGA text mode )
 
 VGA text mode , is a 80 by 25 caracters screen (not pixels) it works by putting DOUBLE BYTES (ASCII code ,color code) in a specific address ```0xB8000``` which is a mapping of VGA card memory in DRAM , also it implements ways to change the position of the hardware cursor internally .
 this driver implements the basic functionality of a video card communication throught the follwing ***API*** :<br/><br/>
