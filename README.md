@@ -51,20 +51,20 @@ Segmentation and interrupts are implemented in the folder ***Gdt_Idt***
   - Each process normally has a different set of page mappings, so that virtual memory spaces are independent of each other. In the x86 architecture (32-bit) pages are fixed      at 4KB in size. Each page has a corresponding descriptor word, which tells the processor which frame it is mapped to. Note that because pages and frames must be aligned on 4KB boundaries (4KB being 0x1000 bytes), the least significant 12 bits of the 32-bit word are always zero. The architecture takes advantage of this by using them to store    information about the page, such as whether it is present, whether it is kernel-mode or user-mode etc. The layout of this word is in the picture on the right
  <br/>
  <img src="/assets/images/page_entry.png"/> <br/> <br/>
-  - P :
+  - **P :**<br/>
       - Set if the page is present in memory.
-  - R/W :
+  - **R/W :**<br/>
       - If set, that page is writeable. If unset, the page is read-only. This does not apply when code is running in kernel-mode (unless a flag in CR0 is set).
-  - U/S :
+  - **U/S :**<br/>
       - If set, this is a user-mode page. Else it is a supervisor (kernel)-mode page. User-mode code cannot write to or read from kernel-mode pages.
-  - Reserved :
+  - **Reserved :**<br/>
       - These are used by the CPU internally and cannot be trampled.
-  - A :
+  - **A :**<br/>
     Set if the page has been accessed (Gets set by the CPU).
-  - D
+  - **D :**<br/>
     Set if the page has been written to (dirty).
-  - AVAIL
+  - **AVAIL :**<br/>
     These 3 bits are unused and available for kernel-use.
-  - Page frame address
+  - **Page frame address:**<br/>
     The high 20 bits of the frame address in physical memory.
  
