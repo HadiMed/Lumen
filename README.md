@@ -5,8 +5,8 @@ Lumen is a 32 bit Kernel on (INTEL x86 systems ) that implements importants part
 **[I. BOOT](#i-boot)**<br>
 **[II. display (VGA text mode)](#ii-display-VGA-text-mode)**<br>
 **[III. Segmentation and interrupts](#iii-segmentation-and-interrupts)**<br>
-**[IV. Paging (the way Virtual memory is implemented in Lumen)](#iv-paging-the-way-virtual-memory-is-implemented-in-lumen)**<br>
-**[V. Dependencies and Testing the kernel](#v-dependencies-and-testing-the-kernel)**<br>
+**[IV. Paging](#iv-paging-the-way-virtual-memory-is-implemented-in-lumen)**<br>
+**[V. Installation and dependencies](#v-dependencies-and-testing-the-kernel)**<br>
 ### I. BOOT
 Lumen is using GRUB as bootloader , GRUB set up protected mode for the kernel , and transfer control to our ``` boot.asm ``` code , the bootloader force us to put the multiboot header in the beginning of our partition (boot code) .<br/>
 Multiboot is a standard to which GRUB expects a kernel to comply. It is a way for the bootloader to :
@@ -50,7 +50,7 @@ Segmentation and interrupts are implemented in the folder ***Gdt_Idt***
     - Channel 0 is the most useful. It's output is connected to IRQ0.
     - Channel 1 is very un-useful and on modern hardware is no longer implemented. It used to control refresh rates for DRAM.
     - Channel 2 controls the PC speaker.
-### IV. Paging (the way Virtual memory is implemented in Lumen) : 
+### IV. Paging (the way Virtual memory is implemented in Lumen)
 - Paging works by splitting the virtual address space into blocks called pages, which are usually 4KB in size. Pages can then be mapped on to frames - equally sized blocks of    physical memory. 
 1. ***Page entries :***<br/>
   - Each process normally has a different set of page mappings, so that virtual memory spaces are independent of each other. In the x86 architecture (32-bit) pages are fixed      at 4KB in size. Each page has a corresponding descriptor word, which tells the processor which frame it is mapped to. Note that because pages and frames must be aligned on 4KB boundaries (4KB being 0x1000 bytes), the least significant 12 bits of the 32-bit word are always zero. The architecture takes advantage of this by using them to store    information about the page, such as whether it is present, whether it is kernel-mode or user-mode etc. The layout of this word is in the picture on the right
