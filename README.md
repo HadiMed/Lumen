@@ -77,3 +77,14 @@ Segmentation and interrupts are implemented in the folder ***Gdt_Idt***
    -  for newer allocations , the developer can call the function allocate_frame that will search for available frames , with g_page that will create new page .
    -  ***Page Faults:*** <br/>
       - when a page fault occur (Access to kernel pages , access to an address not in a paging range , write to read only address ... ) the interrupt 14 will be fired and it will call page_fault handler to check the error_code on the stack and respond adequately .
+### Dependencies and Testing the kernel 
+- The repo contains the recent image of the kernel compiled , you can directly test it with QEMU or on hardware . 
+- or you can compile from source but you ll need the following dependencies :
+  - grub-mkrescue
+  - xorriso
+- just clone the repo 
+``` 
+cd src
+make
+``` 
+- the kernel will start direcly if you have QEMU installed . 
