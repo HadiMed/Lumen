@@ -1,7 +1,12 @@
 # Lumen
 
-Lumen is a 32 bit Kernel on (INTEL x86 systems ) that implements importants parts of a Kernel , from setting up segmentation , interrtuptions, paging to implementing a Virtual file system , the motivation to build this kernel was to learn more about how operating systems , x86 hardware works internally , interacting with the hardware throught special Intel instructions , developing interesting algorithms in various area of the kernel .
-
+Lumen is a 32 bit Kernel on (INTEL x86 systems ) that implements importants parts of a Kernel , from setting up segmentation , interrtuptions, paging to implementing a Virtual file system , the motivation to build this kernel was to learn more about how operating systems , x86 hardware works internally , interacting with the hardware throught special Intel instructions , developing interesting algorithms in various area of the kernel.
+## Table of contents :
+**[I. BOOT](#BOOT)**<br>
+**[II. display (VGA text mode)](#display)**<br>
+**[III. Segmentation and interrupts](#Segmentation-interrupts)**<br>
+**[IV. Paging (the way Virtual memory is implemented in Lumen) : ](#Paging)**<br>
+**[V. Dependencies and Testing the kernel](#Installation)**<br>
 ### I. BOOT
 Lumen is using GRUB as bootloader , GRUB set up protected mode for the kernel , and transfer control to our ``` boot.asm ``` code , the bootloader force us to put the multiboot header in the beginning of our partition (boot code) .<br/>
 Multiboot is a standard to which GRUB expects a kernel to comply. It is a way for the bootloader to :
@@ -11,7 +16,7 @@ Multiboot is a standard to which GRUB expects a kernel to comply. It is a way fo
  ```
   
     
-### II. display (VGA text mode )
+### II. display (VGA text mode)
 
 VGA text mode , is a 80 by 25 caracters screen (not pixels) it works by putting DOUBLE BYTES (ASCII code ,color code) in a specific address ```0xB8000``` which is a mapping of VGA card memory in DRAM , also it implements ways to change the position of the hardware cursor internally .
 this driver implements the basic functionality of a video card communication throught the follwing ***API*** :<br/><br/>
@@ -23,7 +28,7 @@ VGA_write_int : print an integer to the screen
 VGA_write_hex  : print an integer as a hexdecimal value (32 BITS values , but the function can be  easily scalable)
 prinT_with_delay : print a string with a time delay 
 ```
-### III. Segmentation and interrupts 
+### III. Segmentation and interrupts
 Segmentation and interrupts are implemented in the folder ***Gdt_Idt***
 
 1. ***Segmentation :***
@@ -77,7 +82,7 @@ Segmentation and interrupts are implemented in the folder ***Gdt_Idt***
    -  for newer allocations , the developer can call the function allocate_frame that will search for available frames , with g_page that will create new page .
    -  ***Page Faults:*** <br/>
       - when a page fault occur (Access to kernel pages , access to an address not in a paging range , write to read only address ... ) the interrupt 14 will be fired and it will call page_fault handler to check the error_code on the stack and respond adequately .
-### Dependencies and Testing the kernel 
+### V. Dependencies and Testing the kernel 
 - The repo contains the recent image of the kernel compiled , you can directly test it with QEMU or on hardware . 
 - or you can compile from source but you ll need the following dependencies :
   - grub-mkrescue
