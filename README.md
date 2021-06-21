@@ -2,10 +2,10 @@
 
 Lumen is a 32 bit Kernel on (INTEL x86 systems ) that implements importants parts of a Kernel , from setting up segmentation , interrtuptions, paging to implementing a Virtual file system , the motivation to build this kernel was to learn more about how operating systems , x86 hardware works internally , interacting with the hardware throught special Intel instructions , developing interesting algorithms in various area of the kernel.
 ## Table of contents :
-**[I. BOOT](#BOOT)**<br>
+**[I. BOOT](#I.-BOOT)**<br>
 **[II. display (VGA text mode)](#display)**<br>
-**[III. Segmentation and interrupts](#Segmentation-interrupts)**<br>
-**[IV. Paging (the way Virtual memory is implemented in Lumen) : ](#Paging)**<br>
+**[III. Segmentation and interrupts](#Segmentation-and-interrupts)**<br>
+**[IV. Paging (the way Virtual memory is implemented in Lumen)](#Paging)**<br>
 **[V. Dependencies and Testing the kernel](#Installation)**<br>
 ### I. BOOT
 Lumen is using GRUB as bootloader , GRUB set up protected mode for the kernel , and transfer control to our ``` boot.asm ``` code , the bootloader force us to put the multiboot header in the beginning of our partition (boot code) .<br/>
